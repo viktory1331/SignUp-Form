@@ -1,13 +1,12 @@
 import './App.css';
-import { ReactComponent as Logo } from './assets/image/logo.svg';
-import SignUp from './components/form/SignUp';
+import Form from './components/form/Form';
+import SignUp from './components/signUp/SignUp';
+
 
 function App() {
   return (
     <div className="App">
-      <h1>Sign Up with email</h1>
-      <Logo />
-      <SignUp />
+      <Form />
     </div>
   );
 }

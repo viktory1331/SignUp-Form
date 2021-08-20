@@ -1,69 +1,92 @@
-import { ReactComponent as Eye } from '../../assets/image/eye.svg';
 import { useForm } from 'react-hook-form';
+import { PasswordInput } from '../passwordInput/PasswordInput';
 import styles from './SignUp.module.scss';
+import cn from 'classnames';
 
-interface Form {
-  email: String;
-  password: String;
-  passwordConfirmation: String;
+export enum FormFields {
+  Email = 'email',
+  Password = 'password',
+  PasswordConfirmation = 'passwordConfirmation',
 }
 
+export type FormInputs = {
+  [key in FormFields]: string;
+};
+
+const EMAIL_VALIDATION_REGEXP =
+  "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$";
+
 const SignUp = () => {
+  const formControl = useForm<FormInputs>({
+    mode: 'onChange',
+  });
   const {
     register,
     handleSubmit,
     formState: { errors },
     getValues,
-  } = useForm<Form>();
+  } = formControl;
 
-  const onSubmit = (data: Form) => {
+  const onSubmit = (data: FormInputs) => {
     alert(`email: ${data.email}; password: ${data.password}`);
   };
+
+  const hasEmailError = Boolean(errors[FormFields.Email]);
+
+  console.log(errors);
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h2 className={styles.emailStyleElement}>E-mail</h2>
+      <h2 className={styles.formItemTitle}>E-mail</h2>
       <input
-        className={styles.emailInput}
+        className={cn(styles.emailInput, {
+          [styles.emailInputError]: hasEmailError,
+        })}
         placeholder="Email"
-        {...register('email', {
-          pattern: new RegExp(
-            "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
-          ),
+        {...register(FormFields.Email, {
+          pattern: new RegExp(EMAIL_VALIDATION_REGEXP),
         })}
       />
-      {errors.email && <span>Sam loh</span>}
-      <h2 className={styles.createPasswordElement}>Create Password</h2>
-      <div className={styles.inputContainer}>
-        <input
-          placeholder="Password"
-          type="password"
-          {...register('password', { maxLength: 6 })}
-        />
-        {errors.password && <span>This field is required</span>}
-        <i className={styles.faEyeIcon}>
-          <Eye />
-        </i>
-      </div>
-      <h2 className={styles.confirmPasswordElement}>Confirm Password</h2>
-      <div className={styles.confirmPasswordContainer}>
-        <input
-          placeholder="Confirm your password"
-          type="password"
-          {...register('passwordConfirmation', {
-            validate: {
-              matchesPreviousPassword: (value) => {
-                const { password } = getValues();
-                return password === value || 'Passwords should match!';
-              },
+      {errors.email && (
+        <p className={styles.inputErrorTitle}>Enter a valid email</p>
+      )}
+
+      <h2 className={styles.formItemTitle}>Create Password</h2>
+      <PasswordInput
+        formControl={formControl}
+        fieldName={FormFields.Password}
+        placeholder="Password"
+        registerOptions={{ minLength: 6 }}
+        errors={errors}
+      />
+
+      {errors.password && (
+        <p className={styles.inputErrorTitle}>Enter a valid password</p>
+      )}
+
+      <h2 className={styles.formItemTitle}>Confirm Password</h2>
+
+      <PasswordInput
+        formControl={formControl}
+        fieldName={FormFields.PasswordConfirmation}
+        placeholder="Confirm your password"
+        errors={errors}
+        registerOptions={{
+          validate: {
+            matchesPreviousPassword: (value: string) => {
+              const { password } = getValues();
+              return password === value || 'Passwords should match!';
             },
-          })}
-        />
-        {errors.passwordConfirmation && <span>Dolbaeb</span>}
-        <i className={styles.faEyeConfirmIncon}>
-          <Eye />
-        </i>
-      </div>
+          },
+        }}
+      />
+
+      {errors.passwordConfirmation && (
+        <p className={styles.inputErrorTitle}>Passwords should match!</p>
+      )}
+
       <input className={styles.submitButton} type="submit" value="Sign Up" />
+
       <p className={styles.descriptionStyle}>
         Already have an account?{' '}
         <a href="." className={styles.linkStyle}>

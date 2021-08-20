@@ -1,38 +1,58 @@
-.emailStyleElement {
-  width: 60px;
-  height: 22px;
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 22px;
-  color: #5b5b5b;
-}
-.emailInput {
-  width: 500px;
-  height: 70px;
-  border: 1px solid #c1c1c1;
-  box-sizing: border-box;
-  border-radius: 16px;
-}
-.createPasswordElement {
+@import '../../common/styles/variables';
+@import '../../common/styles/mixins';
+
+.formItemTitle {
   width: 159px;
   height: 22px;
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 22px;
-  color: #5b5b5b;
+  @include text-form-style(Montserrat, normal, bold, 18px, 22px, left);
 }
+
+.inputErrorTitle {
+  @include input-error-title-style(
+    Montserrat,
+    normal,
+    normal,
+    16px,
+    20px,
+    left
+  );
+}
+
+.emailInput {
+  &:active,
+  &:focus {
+    border: 1px solid $input-active-border-color;
+  }
+  padding: 10px;
+  width: 500px;
+  height: 70px;
+  border: 1px solid $input-border-normal-color;
+  @include input-container(
+    border-box,
+    16px,
+    none,
+    Montserrat,
+    normal,
+    normal,
+    18px,
+    22px
+  );
+}
+
 .inputContainer {
   width: 500px;
   height: 70px;
-  border: 1px solid #c1c1c1;
+  border: 1px solid $input-border-normal-color;
   box-sizing: border-box;
   border-radius: 16px;
   display: flex;
   align-items: center;
+
+  &:active,
+  &:focus {
+    border: 1px solid $input-active-border-color;
+  }
+
   input {
     padding: 10px;
     width: 100%;
@@ -49,24 +69,19 @@
     margin: 0 10px;
   }
 }
-.confirmPasswordElement {
-  width: 175px;
-  height: 22px;
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 22px;
-  color: #5b5b5b;
-}
+
 .confirmPasswordContainer {
   width: 500px;
   height: 70px;
-  border: 1px solid #c1c1c1;
+  border: 1px solid $input-border-normal-color;
   box-sizing: border-box;
   border-radius: 16px;
   display: flex;
   align-items: center;
+  &:active,
+  &:focus {
+    border: 1px solid $input-active-border-color;
+  }
   input {
     padding: 10px;
     width: 100%;
@@ -77,33 +92,40 @@
     font-weight: normal;
     font-size: 18px;
     line-height: 22px;
-    color: #5b5b5b;
+    color: $input-color-element-color;
   }
   .faEyeConfirmIncon {
     margin: 0 10px;
   }
 }
+
 .submitButton {
+  margin-top: 30px;
   width: 500px;
   height: 70px;
-  background: #3c9c41;
+  background: $btn-bg-color;
   border-radius: 16px;
-  color: #ffffff;
+  color: $btn-text-color;
   font-family: Montserrat;
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
   line-height: 22px;
+  &:hover {
+    background: $hover-btn-bg-color;
+  }
+  &:active {
+    background: $active-btn-bg-color;
+  }
 }
+
 .descriptionStyle {
   font-family: Montserrat;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
   line-height: 22px;
-  /* identical to box height */
-
-  color: #5b5b5b;
+  color: $form-text-color;
   .linkStyle {
     font-family: Montserrat;
     font-style: normal;
@@ -111,6 +133,11 @@
     font-size: 18px;
     line-height: 22px;
     text-decoration-line: underline;
-    color: #3c9c41;
+    color: $link-color;
   }
+}
+
+.emailInputError {
+  border: 1px solid $error-text-color !important;
+  color: $error-text-color;
 }

@@ -1,0 +1,57 @@
+//Form component styles
+@mixin text-form-style(
+  $fontFamily,
+  $fontStyle,
+  $fontWeight,
+  $fontSize,
+  $lineHeight,
+  $textAlign
+) {
+  font-family: $fontFamily;
+  font-style: $fontStyle;
+  font-weight: $fontWeight;
+  font-size: $fontSize;
+  line-height: $lineHeight;
+  text-align: $textAlign;
+  color: $form-text-color;
+}
+
+//SignUp component styles
+@mixin input-error-title-style(
+  $fontFamily,
+  $fontStyle,
+  $fontWeight,
+  $fontSize,
+  $lineHeight,
+  $textAlign
+) {
+  font-family: $fontFamily;
+  font-style: $fontStyle;
+  font-weight: $fontWeight;
+  font-size: $fontSize;
+  line-height: $lineHeight;
+  text-align: $textAlign;
+  color: $error-title-color;
+}
+
+//Own input container
+@mixin input-container(
+  $boxSizing,
+  $borderRadius,
+  $outline,
+  $fontFamily,
+  $fontStyle,
+  $fontWeight,
+  $fontSize,
+  $lineHeight,
+) {
+  box-sizing: $boxSizing;
+  border-radius: $borderRadius;
+  outline: $outline;
+  font-family: $fontFamily;
+  font-style: $fontStyle;
+  font-weight: $fontWeight;
+  font-size: $fontSize;
+  line-height: $lineHeight;
+  color: $input-text-color;
+}

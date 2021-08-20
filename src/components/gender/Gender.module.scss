@@ -1,0 +1,41 @@
+@import '../../common/styles/variables';
+@import '../../common/styles/mixins';
+
+.genderTitle {
+  color: $gender-text-color;
+  width: 70px;
+  height: 22px;
+  @include text-form-style(Montserrat, normal, bold, 18px, 22px, left);
+}
+
+.genderMainContainer {
+  width: 500px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+
+  .genderContainer {
+    width: 156px;
+    height: 100px;
+    border: 1px solid $gender-container-border-color;
+    box-sizing: border-box;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .genderText {
+      width: 44px;
+      height: 22px;
+      margin: 0 auto;
+      font-family: Montserrat;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 22px;
+      margin-top: 8px;
+      color: $gender-text-color;
+    }
+  }
+}

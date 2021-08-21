@@ -2,19 +2,14 @@ import { useForm } from 'react-hook-form';
 import { PasswordInput } from '../passwordInput/PasswordInput';
 import styles from './SignUp.module.scss';
 import cn from 'classnames';
-
-export enum FormFields {
-  Email = 'email',
-  Password = 'password',
-  PasswordConfirmation = 'passwordConfirmation',
-}
+import { FormFields, EMAIL_VALIDATION_REGEXP, GENDER_ITEMS } from './constants';
+import { GenderItem } from '../genderItem/GenderItem';
+import { useState } from 'react';
+import { ReactComponent as Logo } from '../../assets/image/logo.svg';
 
 export type FormInputs = {
   [key in FormFields]: string;
 };
-
-const EMAIL_VALIDATION_REGEXP =
-  "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$";
 
 const SignUp = () => {
   const formControl = useForm<FormInputs>({
@@ -27,78 +22,113 @@ const SignUp = () => {
     getValues,
   } = formControl;
 
+  const [selectedGender, setSelectedGender] = useState<number>();
+
   const onSubmit = (data: FormInputs) => {
-    alert(`email: ${data.email}; password: ${data.password}`);
+    const foundGender = GENDER_ITEMS.find(
+      (genderItem, id) => id === selectedGender
+    );
+    alert(
+      `email: ${data.email}; password: ${data.password}; gender: ${foundGender?.text}`
+    );
   };
 
   const hasEmailError = Boolean(errors[FormFields.Email]);
 
-  console.log(errors);
+  const renderGenderItems = () =>
+    GENDER_ITEMS.map((genderItem, id) => {
+      return (
+        <GenderItem
+          id={id}
+          {...genderItem}
+          key={id}
+          selectedGender={selectedGender}
+          setSelectedGender={setSelectedGender}
+        />
+      );
+    });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h2 className={styles.formItemTitle}>E-mail</h2>
-      <input
-        className={cn(styles.emailInput, {
-          [styles.emailInputError]: hasEmailError,
-        })}
-        placeholder="Email"
-        {...register(FormFields.Email, {
-          pattern: new RegExp(EMAIL_VALIDATION_REGEXP),
-        })}
-      />
-      {errors.email && (
-        <p className={styles.inputErrorTitle}>Enter a valid email</p>
-      )}
+      <div className={styles.formContainer}>
+        <div className={styles.logoContainer}>
+          <Logo />
+          <h1 className={styles.textStyle}>Sign Up with email</h1>
+        </div>
 
-      <h2 className={styles.formItemTitle}>Create Password</h2>
-      <PasswordInput
-        formControl={formControl}
-        fieldName={FormFields.Password}
-        placeholder="Password"
-        registerOptions={{ minLength: 6 }}
-        errors={errors}
-      />
+        <div>
+          <h2 className={styles.formItemTitle}>Gender</h2>
 
-      {errors.password && (
-        <p className={styles.inputErrorTitle}>Enter a valid password</p>
-      )}
+          <div className={styles.genderContainer}>{renderGenderItems()}</div>
 
-      <h2 className={styles.formItemTitle}>Confirm Password</h2>
+          <h2 className={styles.formItemTitle}>E-mail</h2>
+          <input
+            className={cn(styles.emailInput, {
+              [styles.emailInputError]: hasEmailError,
+            })}
+            placeholder="Email"
+            {...register(FormFields.Email, {
+              pattern: new RegExp(EMAIL_VALIDATION_REGEXP),
+            })}
+          />
+          {errors.email && (
+            <p className={styles.inputErrorTitle}>Enter a valid email</p>
+          )}
 
-      <PasswordInput
-        formControl={formControl}
-        fieldName={FormFields.PasswordConfirmation}
-        placeholder="Confirm your password"
-        errors={errors}
-        registerOptions={{
-          validate: {
-            matchesPreviousPassword: (value: string) => {
-              const { password } = getValues();
-              return password === value || 'Passwords should match!';
-            },
-          },
-        }}
-      />
+          <h2 className={styles.formItemTitle}>Create Password</h2>
+          <PasswordInput
+            formControl={formControl}
+            fieldName={FormFields.Password}
+            placeholder="Password"
+            registerOptions={{ minLength: 6 }}
+            errors={errors}
+          />
 
-      {errors.passwordConfirmation && (
-        <p className={styles.inputErrorTitle}>Passwords should match!</p>
-      )}
+          {errors.password && (
+            <p className={styles.inputErrorTitle}>Enter a valid password</p>
+          )}
 
-      <input className={styles.submitButton} type="submit" value="Sign Up" />
+          <h2 className={styles.formItemTitle}>Confirm Password</h2>
 
-      <p className={styles.descriptionStyle}>
-        Already have an account?{' '}
-        <a href="." className={styles.linkStyle}>
-          Log In
-        </a>
-      </p>
-      <p className={styles.descriptionStyle}>
-        Review privacy and disclosures here{' '}
-        <a href="." className={styles.linkStyle}>
-          Here
-        </a>
-      </p>
+          <PasswordInput
+            formControl={formControl}
+            fieldName={FormFields.PasswordConfirmation}
+            placeholder="Confirm your password"
+            errors={errors}
+            registerOptions={{
+              validate: {
+                matchesPreviousPassword: (value: string) => {
+                  const { password } = getValues();
+                  return password === value || 'Passwords should match!';
+                },
+              },
+            }}
+          />
+
+          {errors.passwordConfirmation && (
+            <p className={styles.inputErrorTitle}>Passwords should match!</p>
+          )}
+
+          <input
+            className={styles.submitButton}
+            type="submit"
+            value="Sign Up"
+          />
+
+          <p className={styles.descriptionStyle}>
+            Already have an account?{' '}
+            <a href="." className={styles.linkStyle}>
+              Log In
+            </a>
+          </p>
+          <p className={styles.descriptionStyle}>
+            Review privacy and disclosures here{' '}
+            <a href="." className={styles.linkStyle}>
+              Here
+            </a>
+          </p>
+        </div>
+      </div>
     </form>
   );
 };

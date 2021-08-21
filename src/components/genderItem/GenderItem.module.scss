@@ -1,0 +1,38 @@
+@import '../../common/styles/variables';
+
+.genderContainer {
+  width: 156px;
+  height: 100px;
+  border: 1px solid $silver;
+  box-sizing: border-box;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .genderText {
+    margin: 0 auto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    margin-top: 8px;
+    color: $scorpion;
+  }
+
+  .selectText {
+    font-weight: 700;
+    color: $apple;
+  }
+}
+
+.selectedGender {
+  border: 1px solid $apple;
+
+  svg {
+    path {
+      fill: $apple;
+    }
+  }
+}

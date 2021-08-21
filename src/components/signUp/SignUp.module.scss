@@ -1,143 +1,180 @@
 @import '../../common/styles/variables';
 @import '../../common/styles/mixins';
 
-.formItemTitle {
-  width: 159px;
-  height: 22px;
-  @include text-form-style(Montserrat, normal, bold, 18px, 22px, left);
-}
-
-.inputErrorTitle {
-  @include input-error-title-style(
-    Montserrat,
-    normal,
-    normal,
-    16px,
-    20px,
-    left
-  );
-}
-
-.emailInput {
-  &:active,
-  &:focus {
-    border: 1px solid $input-active-border-color;
-  }
-  padding: 10px;
-  width: 500px;
-  height: 70px;
-  border: 1px solid $input-border-normal-color;
-  @include input-container(
-    border-box,
-    16px,
-    none,
-    Montserrat,
-    normal,
-    normal,
-    18px,
-    22px
-  );
-}
-
-.inputContainer {
-  width: 500px;
-  height: 70px;
-  border: 1px solid $input-border-normal-color;
-  box-sizing: border-box;
-  border-radius: 16px;
+.genderContainer {
   display: flex;
-  align-items: center;
-
-  &:active,
-  &:focus {
-    border: 1px solid $input-active-border-color;
-  }
-
-  input {
-    padding: 10px;
-    width: 100%;
-    border: 0;
-    outline: none;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 22px;
-    color: #5b5b5b;
-  }
-  .faEyeIcon {
-    margin: 0 10px;
-  }
+  justify-content: space-between;
+  column-gap: 16px;
 }
 
-.confirmPasswordContainer {
-  width: 500px;
-  height: 70px;
-  border: 1px solid $input-border-normal-color;
-  box-sizing: border-box;
-  border-radius: 16px;
+.formContainer {
+  margin: 0 auto;
+  align-items: center;
   display: flex;
-  align-items: center;
-  &:active,
-  &:focus {
-    border: 1px solid $input-active-border-color;
-  }
-  input {
-    padding: 10px;
-    width: 100%;
-    border: 0;
-    outline: none;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 22px;
-    color: $input-color-element-color;
-  }
-  .faEyeConfirmIncon {
-    margin: 0 10px;
-  }
-}
+  flex-direction: column;
 
-.submitButton {
-  margin-top: 30px;
-  width: 500px;
-  height: 70px;
-  background: $btn-bg-color;
+  background: $white;
+  box-shadow: 5px 10px 30px rgba(0, 0, 0, 0.05);
   border-radius: 16px;
-  color: $btn-text-color;
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 22px;
-  &:hover {
-    background: $hover-btn-bg-color;
-  }
-  &:active {
-    background: $active-btn-bg-color;
-  }
-}
+  padding-bottom: 35px;
 
-.descriptionStyle {
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 22px;
-  color: $form-text-color;
-  .linkStyle {
+  @media screen and (max-width: 500px) {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: initial;
+    padding: 0 35px 35px;
+    background: $white;
+    box-shadow: 5px 10px 30px rgba(0, 0, 0, 0.05);
+    border-radius: 16px;
+
+  }
+
+  .logoContainer {
+    padding-top: 29px;
+  }
+
+  .textStyle {
+    @include text-form-style(Montserrat, normal, bold, 24px, 29px, center);
+  }
+
+  .formItemTitle {
+    @include text-form-style(Montserrat, normal, bold, 18px, 22px, left);
+  }
+
+  .inputErrorTitle {
+    @include input-error-title-style(
+      Montserrat,
+      normal,
+      normal,
+      16px,
+      20px,
+      left
+    );
+  }
+
+  .emailInput {
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    height: 70px;
+    border: 1px solid $silver;
+
+    &:active,
+    &:focus {
+      border: 1px solid $feijoa;
+    }
+
+    @include input-container(
+      border-box,
+      16px,
+      none,
+      Montserrat,
+      normal,
+      normal,
+      18px,
+      22px
+    );
+  }
+
+  .inputContainer {
+    height: 70px;
+    border: 1px solid $silver;
+    box-sizing: border-box;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+
+    &:active,
+    &:focus {
+      border: 1px solid $feijoa;
+    }
+
+    input {
+      padding: 10px;
+      width: 100%;
+      border: 0;
+      outline: none;
+      font-family: Montserrat;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 22px;
+      color: #5b5b5b;
+    }
+    .faEyeIcon {
+      margin: 0 10px;
+    }
+  }
+
+  .confirmPasswordContainer {
+    height: 70px;
+    border: 1px solid $silver;
+    box-sizing: border-box;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    &:active,
+    &:focus {
+      border: 1px solid $feijoa;
+    }
+    input {
+      padding: 10px;
+      width: 100%;
+      border: 0;
+      outline: none;
+      font-family: Montserrat;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 22px;
+      color: $scorpion;
+    }
+    .faEyeConfirmIncon {
+      margin: 0 10px;
+    }
+  }
+
+  .submitButton {
+    margin-top: 30px;
+    width: 100%;
+    height: 70px;
+    background: $apple;
+    border-radius: 16px;
+    color: $white;
     font-family: Montserrat;
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
     line-height: 22px;
-    text-decoration-line: underline;
-    color: $link-color;
+    &:hover {
+      background: $chateauGreen;
+    }
+    &:active {
+      background: $seaGreen;
+    }
   }
-}
 
-.emailInputError {
-  border: 1px solid $error-text-color !important;
-  color: $error-text-color;
+  .descriptionStyle {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    color: $scorpion;
+    .linkStyle {
+      font-family: Montserrat;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 22px;
+      text-decoration-line: underline;
+      color: $apple;
+    }
+  }
+
+  .emailInputError {
+    border: 1px solid $persianRed !important;
+    color: $persianRed;
+  }
 }

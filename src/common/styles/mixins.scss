@@ -13,7 +13,7 @@
   font-size: $fontSize;
   line-height: $lineHeight;
   text-align: $textAlign;
-  color: $form-text-color;
+  color: $scorpion;
 }
 
 //SignUp component styles
@@ -31,7 +31,7 @@
   font-size: $fontSize;
   line-height: $lineHeight;
   text-align: $textAlign;
-  color: $error-title-color;
+  color: $persianRed;
 }
 
 //Own input container
@@ -43,7 +43,7 @@
   $fontStyle,
   $fontWeight,
   $fontSize,
-  $lineHeight,
+  $lineHeight
 ) {
   box-sizing: $boxSizing;
   border-radius: $borderRadius;
@@ -53,5 +53,5 @@
   font-weight: $fontWeight;
   font-size: $fontSize;
   line-height: $lineHeight;
-  color: $input-text-color;
+  color: $scorpion;
 }

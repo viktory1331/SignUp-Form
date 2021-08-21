@@ -6,7 +6,8 @@ import {
   FieldError,
 } from 'react-hook-form';
 import cn from 'classnames';
-import { FormInputs, FormFields } from '../signUp/SignUp';
+import { FormInputs } from '../signUp/SignUp';
+import { FormFields } from '../signUp/constants';
 import { ReactComponent as Eye } from '../../assets/image/eye.svg';
 import style from './PasswordInput.module.scss';
 

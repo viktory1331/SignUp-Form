@@ -1,9 +1,9 @@
 import { useForm } from 'react-hook-form';
-import { PasswordInput } from '../passwordInput/PasswordInput';
+import { PasswordInput } from '../../components/passwordInput/PasswordInput';
 import styles from './SignUp.module.scss';
 import cn from 'classnames';
 import { FormFields, EMAIL_VALIDATION_REGEXP, GENDER_ITEMS } from './constants';
-import { GenderItem } from '../genderItem/GenderItem';
+import { GenderItem } from '../../components/genderItem/GenderItem';
 import { useState } from 'react';
 import { ReactComponent as Logo } from '../../assets/image/logo.svg';
 

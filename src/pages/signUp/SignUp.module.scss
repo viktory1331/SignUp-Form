@@ -144,6 +144,7 @@
     font-weight: bold;
     font-size: 18px;
     line-height: 22px;
+    border: transparent;
 
     &:hover {
       background: $chateauGreen;
@@ -161,7 +162,7 @@
     font-size: 18px;
     line-height: 22px;
     color: $scorpion;
-    
+
     .linkStyle {
       font-family: Montserrat;
       font-style: normal;

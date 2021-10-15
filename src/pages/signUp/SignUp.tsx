@@ -51,7 +51,7 @@ const SignUp = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className={styles.formContainer}>
-        <div className={styles.logoContainer}>
+        <div>
           <Logo />
           <h1 className={styles.textStyle}>Sign Up with email</h1>
         </div>

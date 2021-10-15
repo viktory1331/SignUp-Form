@@ -12,11 +12,10 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-
   background: $white;
   box-shadow: 5px 10px 30px rgba(0, 0, 0, 0.05);
   border-radius: 16px;
-  padding-bottom: 35px;
+  padding: 30px;
 
   @media screen and (max-width: 500px) {
     margin: 0 auto;
@@ -27,11 +26,6 @@
     background: $white;
     box-shadow: 5px 10px 30px rgba(0, 0, 0, 0.05);
     border-radius: 16px;
-
-  }
-
-  .logoContainer {
-    padding-top: 29px;
   }
 
   .textStyle {
@@ -102,6 +96,7 @@
       line-height: 22px;
       color: #5b5b5b;
     }
+
     .faEyeIcon {
       margin: 0 10px;
     }
@@ -114,10 +109,12 @@
     border-radius: 16px;
     display: flex;
     align-items: center;
+
     &:active,
     &:focus {
       border: 1px solid $feijoa;
     }
+
     input {
       padding: 10px;
       width: 100%;
@@ -130,13 +127,13 @@
       line-height: 22px;
       color: $scorpion;
     }
+
     .faEyeConfirmIncon {
       margin: 0 10px;
     }
   }
 
   .submitButton {
-    margin-top: 30px;
     width: 100%;
     height: 70px;
     background: $apple;
@@ -147,9 +144,11 @@
     font-weight: bold;
     font-size: 18px;
     line-height: 22px;
+
     &:hover {
       background: $chateauGreen;
     }
+
     &:active {
       background: $seaGreen;
     }
@@ -162,6 +161,7 @@
     font-size: 18px;
     line-height: 22px;
     color: $scorpion;
+    
     .linkStyle {
       font-family: Montserrat;
       font-style: normal;
